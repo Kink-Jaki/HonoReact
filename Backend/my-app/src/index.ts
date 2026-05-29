@@ -8,7 +8,7 @@ const db = new Database('app.db')
 
 const JWT_SECRET = 'sangat-rahasia-sekali-123'
 
-app.use('/api/*', cors({ origin: 'http://localhost:5173' }))
+app.use('/api/*', cors({ origin: '192.168.111.191:5173' }))
 
 // ==========================================
 // MIDDLEWARE JWT KUSTOM (Anti-Error TypeScript)
