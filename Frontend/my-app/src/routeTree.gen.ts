@@ -9,27 +9,51 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LosterRouteImport } from './routes/loster'
 
-export interface FileRoutesByFullPath {}
-export interface FileRoutesByTo {}
+const LosterRoute = LosterRouteImport.update({
+  id: '/loster',
+  path: '/loster',
+  getParentRoute: () => rootRouteImport,
+} as any)
+
+export interface FileRoutesByFullPath {
+  '/loster': typeof LosterRoute
+}
+export interface FileRoutesByTo {
+  '/loster': typeof LosterRoute
+}
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/loster': typeof LosterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: never
+  fullPaths: '/loster'
   fileRoutesByTo: FileRoutesByTo
-  to: never
-  id: '__root__'
+  to: '/loster'
+  id: '__root__' | '/loster'
   fileRoutesById: FileRoutesById
 }
-export interface RootRouteChildren {}
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {}
+export interface RootRouteChildren {
+  LosterRoute: typeof LosterRoute
 }
 
-const rootRouteChildren: RootRouteChildren = {}
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/loster': {
+      id: '/loster'
+      path: '/loster'
+      fullPath: '/loster'
+      preLoaderRoute: typeof LosterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+  }
+}
+
+const rootRouteChildren: RootRouteChildren = {
+  LosterRoute: LosterRoute,
+}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()

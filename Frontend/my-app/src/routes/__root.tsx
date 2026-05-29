@@ -4,7 +4,7 @@ export const Route = createRootRoute({
   component: () => {
     return (
       <div>
-        <h2>My App</h2>
+        <h2>Login & Register</h2>
         <hr />
         <Outlet />
       </div>
