@@ -9,7 +9,6 @@ const db = new Database('app.db')
 const JWT_SECRET = 'sangat-rahasia-sekali-123'
 
 app.use('/api/*', cors({ origin: '192.168.111.191:5173' }))
-
 // ==========================================
 // MIDDLEWARE JWT KUSTOM (Anti-Error TypeScript)
 // ==========================================
@@ -122,5 +121,6 @@ app.delete('/api/users/:id', (c) => {
 
 export default {
   port: 3000,
+  host: '0.0.0.0',
   fetch: app.fetch
 }
